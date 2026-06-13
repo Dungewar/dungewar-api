@@ -1,0 +1,35 @@
+{
+    "status": "success",
+    "data": {
+        "id": "9dd2f94e-fa97-4713-a457-749110ed3ab0",
+        "code": "BRENT_CRUDE_USD",
+        "price": 86.8,
+        "created_at": "2026-06-12T22:14:25.460Z",
+        "source": "oilprice.ft",
+        "type": "spot_price",
+        "currency": "USD",
+        "formatted": "$86.80",
+        "unit": "barrel",
+        "updated_at": "2026-06-12T22:14:25.460Z",
+        "metadata": {
+            "source": "oilprice.ft",
+            "source_description": "Financial Times"
+        },
+        "changes": {
+            "24h": {
+                "amount": -2.33,
+                "percent": -2.61,
+                "previous_price": 89.13
+            }
+        },
+        "data_status": "stale",
+        "freshness": {
+            "status": "stale",
+            "age_seconds": 68772,
+            "expected_max_age_seconds": 3600
+        },
+        "stale": true,
+        "is_stale": true,
+        "stale_reason": "no_recent_data"
+    }
+}
