@@ -28,22 +28,21 @@ function fetchCache(filePath, timeout = 1000 * 60 * 60 * 24, resetAtMidnight = f
             rightNow.setHours(0, 0, 0, 0);
 
             if (rightNow > modifiedTime) {
+                console.log("Since", rightNow, ">", modifiedTime, "changing cache...")
                 return false;
             }
         } else {
             if (rightNow > modifiedTime.getTime() + timeout) {
+                console.log("Since", rightNow, ">", modifiedTime, "+", timeout, "changing cache...")
                 return false;
             }
         }
     } else {
+        console.log("Since", filePath, "doesn't exist", "changing cache...")
         return false;
     }
 
     return fs.readFileSync(filePath);
-}
-
-function writeRandomQuote() {
-
 }
 
 function quoteHandler() {
