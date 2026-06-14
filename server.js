@@ -46,7 +46,7 @@ function fetchCache(filePath, timeout = 1000 * 60 * 60 * 24, resetAtMidnight = f
 }
 
 function quoteHandler() {
-    let quote = fetchCache(qotdPath, resetAtMidnight = true);
+    let quote = fetchCache(qotdPath, 0, resetAtMidnight = true);
     if (quote) return quote;
     else {
         // Write random quote
