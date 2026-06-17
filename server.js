@@ -82,6 +82,28 @@ async function oilHandler() {
     }
 }
 
+function oilPrettyifier(input) {
+    let price = input.data.price;
+    let change = input.data.changes["24h"].percent;
+    // If the data after the decimal is within 0.1 of it, round to .67
+    if (price - Math.floor(price) > 0.57 && price - Math.floor(price) < 0.77) {
+        price = Math.floor(price) + 0.67;
+    } else {
+        price = Math.round(price);
+    }
+    // Do the same for change then return the json with the changed values
+    if (change - Math.floor(change) > 0.57 && change - Math.floor(change) < 0.77) {
+        change = Math.floor(change) + 0.67;
+    } else {
+        change = Math.round(change);
+    }
+    // Change input to have the new price and change values
+    input.data.price = price;
+    input.data.changes["24h"].percent = change;
+    return input;
+    
+}
+
 app.get('/qotd', (req, res) => {
     res.status(200).send(quoteHandler());
 })
@@ -96,7 +118,7 @@ app.get('/oil-full', async (req, res) => {
         }
         
         // Assuming oilHandler returns a parsed object or string
-        res.status(200).send(data);
+        res.status(200).send(oilPrettyifier(data));
     } catch (error) {
         console.error("Route error:", error);
         res.status(500).send("Internal Server Error");
@@ -113,7 +135,7 @@ app.get('/oil-simple', async (req, res) => {
         }
         
         // Assuming oilHandler returns a parsed object or string
-        res.status(200).send(data.data.formatted);
+        res.status(200).send(oilPrettyifier(data).data.formatted);
     } catch (error) {
         console.error("Route error:", error);
         res.status(500).send("Internal Server Error");
